@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="User">
+	<typeAlias alias="User" type="com.root.user.model.User" />
+	
+	<insert id="addUser" parameterClass = "User">
+		insert into bs_user (userName,password,crDate)
+			values (#userName#,#password#,#crDate#)
+	</insert>
+	
+	<select id="selectCount" resultClass="Int">
+		select count(*) from
+		bs_user
+	</select>
+	
+	<select id="queryUser" parameterClass="java.lang.String" resultClass="User">
+		select userId,userName,password from bs_user where userName = #userName#
+	</select>
+	
+	<select id="queryUserList" resultClass ="User" 
+	parameterClass="com.pageBean.PageBean" >
+		<![CDATA[ 
+           select * from 
+           (select g.*,rownum rn from 
+           		(select userId,userName,password,crDate,roleName 
+           			from bs_user
+           				left join bs_role on bs_user.roleId = bs_role.roleId ) g order by userId) 
+          			where rn <=#endNumber#  and rn >=#beginNumber#
+        ]]>
+	</select>
+	
+	<update id="updateUserua" parameterClass = "java.util.HashMap">
+		update bs_user
+			set roleId = #roleId#
+			where userId = #userId#
+	</update>
+	
+	<update id = "updateUserpw" parameterClass="User">
+		update bs_user 
+ 			set password = #password#
+			where userName = #userName#  
+	</update>
+</sqlMap>
+

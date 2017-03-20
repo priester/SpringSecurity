@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="base.definition"
+        template="/WEB-INF/jsps/layout.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/WEB-INF/jsps/top.jsp" />
+        <put-attribute name="menu" value="" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/jsps/footer.jsp" />
+    </definition>
+    
+     <definition name="user/list" extends="base.definition">
+        <put-attribute name="title" value="用户列表"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/user/userfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/user/list.jsp"/>
+    </definition>
+    
+    <definition name="user/updateua" extends="base.definition">
+        <put-attribute name="title" value="权限修改"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/user/userfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/user/updateua.jsp"/>
+    </definition>
+    
+    <definition name="user/updatepw" extends="base.definition">
+        <put-attribute name="title" value="密码修改"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/user/userfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/user/updatepw.jsp"/>
+    </definition>
+    
+    <definition name="user/adduser" extends="base.definition">
+        <put-attribute name="title" value="用户添加"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/user/userfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/user/adduser.jsp"/>
+    </definition>
+    
+     <definition name="resc/list" extends="base.definition">
+        <put-attribute name="title" value="资源列表"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/user/userfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/resc/list.jsp"/>
+    </definition>
+    
+    <definition name="resc/addResc" extends="base.definition">
+        <put-attribute name="title" value="添加资源"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/user/userfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/resc/addResc.jsp"/>
+    </definition>
+        
+    <definition name="resc/updateresc" extends="base.definition">
+        <put-attribute name="title" value="修改资源"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/user/userfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/resc/updateresc.jsp"/>
+    </definition>
+    
+    <definition name="role/list" extends="base.definition">
+        <put-attribute name="title" value="角色列表"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/user/userfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/role/list.jsp"/>
+    </definition>
+    
+    <definition name="role/addrole" extends="base.definition">
+        <put-attribute name="title" value="添加角色"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/user/userfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/role/addrole.jsp"/>
+    </definition>
+    
+     <definition name="role/updaterole" extends="base.definition">
+        <put-attribute name="title" value="编辑角色"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/user/userfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/role/updaterole.jsp"/>
+    </definition>
+    
+    <definition name="user/loglist" extends="base.definition">
+        <put-attribute name="title" value="登陆日志"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/user/userfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/user/loglist.jsp"/>
+    </definition>
+    
+    
+    <definition name="ok" extends="base.definition">
+        <put-attribute name="title" value="成功"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/user/userfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/ok.jsp"/>
+    </definition>
+    
+    <definition name="welcome" extends="base.definition">
+        <put-attribute name="title" value="欢迎页面"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/user/userfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/welcome.jsp"/>
+    </definition>
+    
+    <definition name="personal/addmessage" extends="base.definition">
+        <put-attribute name="title" value="添加新员工信息"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/personal/persfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/personal/addmessage.jsp"/>
+    </definition>
+    
+    <definition name="personal/showmessage" extends="base.definition">
+        <put-attribute name="title" value="查看自己基本工信息"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/personal/persfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/personal/showmessage.jsp"/>
+    </definition>
+    
+    <definition name="personal/addupmessage" extends="base.definition">
+        <put-attribute name="title" value="查看自己基本工信息"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/personal/persfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/personal/addupmessage.jsp"/>
+    </definition>
+    
+    <definition name="personal/ok" extends="base.definition">
+        <put-attribute name="title" value="成功"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/personal/persfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/personal/ok.jsp"/>
+    </definition>
+    
+     <definition name="personal/contactlist" extends="base.definition">
+        <put-attribute name="title" value="通讯录"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/personal/persfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/personal/contactlist.jsp"/>
+    </definition>
+    
+    <definition name="worktime/dakaTest" extends="base.definition">
+        <put-attribute name="title" value="上下班记录演示"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/worktime/wtfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/worktime/dakaTest.jsp"/>
+    </definition>
+    
+      <definition name="worktime/querydate" extends="base.definition">
+        <put-attribute name="title" value="上下班记录演示"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/worktime/wtfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/worktime/querydate.jsp"/>
+    </definition>
+    
+    <definition name="commu/forum" extends="base.definition">
+        <put-attribute name="title" value="交流园地"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/worktime/wtfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/commu/forum.jsp"/>
+    </definition>
+    
+    <definition name="commu/comm" extends="base.definition">
+        <put-attribute name="title" value="交流园地"/>
+        <put-attribute name="menu" value="/WEB-INF/jsps/worktime/wtfunc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsps/commu/comm.jsp"/>
+    </definition>
+    
+</tiles-definitions>

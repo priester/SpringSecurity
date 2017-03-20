@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace = "Comm">
+	<typeAlias alias="Comm" type="com.commu.model.Comm"/>
+	<insert id="addComm" parameterClass="Comm">
+		insert into bs_comm (mesId,cmmes,name,time)
+		values (#mesId#,#cmmes#,#name#,#time#)
+	</insert>
+	
+	<select id="cmcount" resultClass="java.lang.Integer"
+	parameterClass="java.lang.Integer" >
+	select count(*) from bs_comm where mesId = #mesId# 
+	</select>
+	
+	<select id="cmlist" parameterClass="java.util.HashMap"
+	resultClass="Comm">
+		<![CDATA[
+			select * from 
+			(select g.*,rownum rn from (select * from bs_comm where mesId = #mesId# order by cmId)g)
+			where rn >=  #beginNumber# and rn <= #endNumber#
+			]]>
+	</select>
+</sqlMap>

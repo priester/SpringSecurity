@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" 
+   "http://ibatis.apache.org/dtd/sql-map-config-2.dtd"> 
+<sqlMapConfig> 
+ <!-- 配置settings --> 
+ <settings lazyLoadingEnabled="true" useStatementNamespaces="false"/> 
+      
+ <!-- 配置sql映射文件 --> 
+<sqlMap resource="com/root/user/model/User.xml"/>
+<sqlMap resource="com/root/role/model/Role.xml"/>
+<sqlMap resource="com/root/resc/model/Resources.xml"/>
+<sqlMap resource="com/root/user/model/UserLoginList.xml"/>
+<sqlMap resource="com/personal/model/EmpMessage.xml"/>
+<sqlMap resource="com/personal/model/WorkTime.xml"/>
+<sqlMap resource="com/commu/model/Fmes.xml"/>
+<sqlMap resource="com/commu/model/Comm.xml"/>
+</sqlMapConfig>

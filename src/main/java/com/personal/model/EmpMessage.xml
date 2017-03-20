@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="EmpMessage">
+	<typeAlias alias="EmpMessage" type="com.personal.model.EmpMessage" />
+
+
+	<insert id="insertEmpMessage" parameterClass="EmpMessage">
+		insert into
+		emp_message(empId,name,idCard,age,sex,addr,specialty,job,studyeffort,school,tel,email,qq,note)
+		values(#empId#,#name#,#idCard#,#age#,#sex#,#addr#,#specialty#,#job#,#studyeffort#,#school#,#tel#,#email#,#qq#,#note#)
+	</insert>
+
+	<update id="addupMessage" parameterClass="EmpMessage">
+		update emp_message
+		set
+		name = #name#,
+		idCard = #idCard#,
+		age = #age#,
+		sex = #sex#,
+		addr = #addr#,
+		specialty = #specialty#,
+		job = #job#,
+		studyeffort = #studyeffort#,
+		school = #school#,
+		tel = #tel#,
+		email = #email#,
+		qq = #qq#,
+		note = #note#
+		where empId = #empId#
+	</update>
+
+	<select id="qureryEmpMessage" parameterClass="java.lang.Integer"
+		resultClass="EmpMessage">
+		select
+		name,empId,idCard,age,sex,addr,specialty,job,studyeffort,school,tel,email,qq,note
+		from emp_message
+		where empId = #empId#
+	</select>
+
+	<select id="empCount" resultClass="java.lang.Integer">
+		select count(*)
+		from
+		emp_message
+	</select>
+
+	<select id="queryAllContacts" resultClass="EmpMessage">
+		select
+		empId,name,tel,qq,email
+		from emp_message order by empId
+	</select>
+
+	<select id="queryContacts" parameterClass="com.pageBean.PageBean"
+		resultClass="EmpMessage">
+		<![CDATA[
+		select empId,name,tel,qq,email from 
+		(select g.*,rownum rn from (select empId,name,tel,qq,email from emp_message order by empId)g)
+		where rn >= #beginNumber# and rn <= #endNumber#
+		]]>
+	</select>
+
+
+</sqlMap>

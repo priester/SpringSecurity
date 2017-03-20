@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="UserLoginList">
+<typeAlias alias="UserLoginList" type="com.root.user.model.UserLoginList" />
+	<insert id="addLoginList" parameterClass ="UserLoginList" >
+		insert into bs_login(userName,loginIp,loginTime)
+			values (#userName#,#loginIp#,#loginTime#)
+	</insert>
+	
+	<select id="logCount" resultClass="java.lang.Integer">
+		select count(*) 
+			from bs_login
+	</select>
+	
+	<select id="queryAlllog" resultClass="UserLoginList">
+		 <![CDATA[ 
+           select * from 
+           (select g.*,rownum rn from (select * from bs_login order by loginId desc) g) 
+           where rn <=#endNumber#  and rn >=#beginNumber#
+        ]]>
+	</select>
+</sqlMap>

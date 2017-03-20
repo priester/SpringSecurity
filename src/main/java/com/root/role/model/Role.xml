@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="Resources">
+	<typeAlias alias="Role" type="com.root.role.model.Role" />
+
+	<insert id="insertRole" parameterClass="Role">
+		insert into bs_role
+		(roleName,roleKey,description)
+		values (#roleName#,#roleKey#,#description#)
+	</insert>
+
+	<delete id="deleteRole" parameterClass="java.lang.Integer">
+		delete from bs_role
+		where roleId= #roleId#
+	</delete>
+
+	<update id="updateRole" parameterClass="Role">
+		update bs_role
+		set roleName = #roleName#,
+		roleKey = #roleKey#,
+		description = #description#
+		where roleId = #roleId#
+	</update>
+	
+	<select id="roleCount" resultClass="java.lang.Integer">
+		select count(*)
+			from bs_role
+	</select>
+	
+	<select id="queryRoleById" parameterClass="java.lang.Integer"
+	resultClass="Role">
+		select roleName ,roleKey,description from bs_role
+			where roleId = #roleId#
+	</select>
+
+	<select id="queryAllRole" parameterClass = "com.pageBean.PageBean"
+	resultClass="Role">
+		 <![CDATA[ 
+           select * from 
+           (select g.*,rownum rn from (select * from bs_role order by roleId) g) 
+           where rn <=#endNumber#  and rn >=#beginNumber#
+        ]]>
+	</select>
+
+</sqlMap>

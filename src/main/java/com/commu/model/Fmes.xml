@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="Fmes">
+	<typeAlias alias="Fmes" type="com.commu.model.Fmes" />
+	
+	<insert id="fatie" parameterClass="Fmes">
+		insert into bs_fmes (name,title,message,time,acttime,praise)
+			values(#name#,#title#,#message#,#time#,#acttime#,#praise#)
+	</insert>
+	
+	<update id="updatepraise" parameterClass="java.util.HashMap">
+		update bs_fmes set praise = #praise#
+		where mesId = #mesId#
+	</update>
+	
+	<select id="fcount" resultClass="java.lang.Integer">
+		select count(*) from bs_fmes
+	</select>
+	
+	<select id="queryById" parameterClass="java.lang.Integer"
+	resultClass="Fmes">
+		select name,title,message,time from bs_fmes
+			where mesId = #mesId#
+	</select>
+
+	<select id="flist" parameterClass="com.pageBean.PageBean"
+		resultClass="Fmes">
+		<![CDATA[
+		select * from 
+		(select g.*,rownum rn from (select mesId,name,title,message,time,acttime,praise from bs_fmes) g)
+		where rn <=#endNumber#  and rn >=#beginNumber#
+		]]>
+	</select>
+</sqlMap>

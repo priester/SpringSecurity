@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="Resources">
+	<typeAlias alias="Resources" type="com.root.resc.model.Resources" />
+	<insert id="insertResc" parameterClass="Resources">
+		insert into bs_resources
+		(rescName,rescKey,resUrl,description)
+		values (#rescName#,#rescKey#,#resUrl#,#description#)
+	</insert>
+
+	<update id="updateResc" parameterClass="Resources">
+		update bs_resources
+		set rescName = #rescName#,
+		rescKey = #rescKey#,
+		resUrl= #resUrl#,
+		description= #description#
+		where rescId = #rescId#
+	</update>
+
+	<delete id="deleteResc" parameterClass="java.lang.Integer">
+		delete from bs_resources
+		where rescId = #rescId#
+	</delete>
+
+	<select id="queryByRescId" parameterClass="java.lang.Integer"
+		resultClass="Resources">
+		select rescName,rescKey,resUrl,description from
+		bs_resources
+		where rescId = #rescId#
+	</select>
+
+
+	<select id="selectCountr" resultClass="Int">
+		select count(*)
+		from bs_resources
+	</select>
+
+	<select id="qureyRescById" parameterClass="Integer" resultClass="Resources">
+		SELECT *
+		FROM bs_resources WHERE rescId in(
+		SELECT rescId FROM
+		bs_resources_role WHERE roleId in(
+		SELECT roleId FROM bs_user
+		WHERE userId=#userId#))
+	</select>
+
+	<select id="qureySById" parameterClass="Integer" resultClass="java.lang.String">
+		SELECT rescKey
+		FROM bs_resources WHERE rescId in(
+		SELECT rescId FROM
+		bs_resources_role WHERE roleId in(
+		SELECT roleId FROM bs_user
+		WHERE userId=#userId#))
+	</select>
+
+
+	<select id="queryAll" resultClass="Resources">
+		select * from bs_resources
+	</select>
+
+	<select id="queryRescList" parameterClass="com.pageBean.PageBean"
+		resultClass="Resources">
+		 <![CDATA[ 
+           select * from 
+           (select g.*,rownum rn from (select * from bs_resources order by rescId) g) 
+           where rn <=#endNumber#  and rn >=#beginNumber#
+        ]]>
+
+	</select>
+
+
+</sqlMap>
